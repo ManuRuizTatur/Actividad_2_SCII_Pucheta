@@ -24,10 +24,10 @@ u =linspace(0,Tf,pasos+1);
 ref=linspace(0,Tf,pasos+1);
 
 %Definicion variables
-tRef=(pi/2);    %Caso 1
-%tRef=(-pi/2);  %Caso 2
-Tl=1.15e-3;     %Caso 1
-%T1=0;          %Caso 2
+%tRef=(pi/2);   %Caso 1
+tRef=(-pi/2);   %Caso 2
+%Tl=1.15e-6;    %Caso 1
+Tl=0;           %Caso 2
 tc=300e-3;
 est=0;
 
@@ -69,9 +69,9 @@ A_controlable=inv(Mat_T)*Mat_A*Mat_T; %Verificación de que T esté bien
                                       %Si la inversa existe es controlable
 
 %Ubicación de los polos de lazo cerrado
-P1=-3600000;
-P2=-350000; 
-P3=-500000;
+P1=-3600;
+P2=-350; 
+P3=-500;
 
 alfa_i=poly([P1 P2 P3]); %Genero la ecuacion de los polos deseada
 
@@ -120,8 +120,8 @@ w(ii);
 theta(ii)];
 
 %Ley de control
-u(ii)= -K*estado+G*ref(ii); color='m'; %Sin observador
-% u(ii)= -K*x_hat(:,1)+G*ref(ii); color='c'; %Con observador
+%u(ii)= -K*estado+G*ref(ii); color='b'; %Sin observador
+u(ii)= -K*x_hat(:,1)+G*ref(ii); color='c'; %Con observador
 U=u(ii);
 
 %Satuador
@@ -152,6 +152,6 @@ end
 %Graficos
 figure(1);hold on ;
 subplot(2,2,1);plot(t,ia,color);grid on; title('i_a , Corriente [A]');hold on; xlabel('Tiempo en Seg.');
-subplot(2,2,2);plot(t,theta,color);grid on;hold on;
-subplot(2,2,2);plot(t,ref,'k');grid on;title('\theta_t , Posicion angular [rad]');hold on; xlabel('Tiempo en Seg.');
-subplot(2,1,2);plot(t,u,color);grid on;title('u_t , Acción de control [V]');xlabel('Tiempo en Seg.');
+subplot(2,1,2);plot(t,theta,color);grid on;hold on;
+subplot(2,1,2);plot(t,ref,'k');grid on;title('\theta_t , Posicion angular [rad]');hold on; xlabel('Tiempo en Seg.');
+subplot(2,2,2);plot(t,u,color);grid on;title('u_t , Acción de control [V]');xlabel('Tiempo en Seg.');
