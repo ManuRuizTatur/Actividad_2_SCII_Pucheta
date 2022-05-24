@@ -143,7 +143,7 @@ w(ii+1)=w(ii)+h*w_p(ii);
 theta(ii+1)=theta(ii)+h*w(ii);
 y_salO(ii)=Mat_C*x_hat(:,1);
 y_sal(ii)=Mat_C*estado;
-x_hatp=Mat_A*x_hat+Mat_B*u(ii)+KO*(y_sal(ii)-y_salO(ii));
+x_hatp=Mat_A*x_hat+Mat_B(:,1)*u(ii)+KO*(y_sal(ii)-y_salO(ii));
 x_hat=x_hat+h*x_hatp;
 
 ii=ii+1;
